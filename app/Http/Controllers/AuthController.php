@@ -60,8 +60,4 @@ class AuthController extends BaseController {
       ], 500);
     }
   }
-
-  public function logout() {
-    Auth::logout();
-  }
 }

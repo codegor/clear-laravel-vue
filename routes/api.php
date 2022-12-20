@@ -17,8 +17,8 @@ use App\Http\Controllers;
 Route::controller(Controllers\AuthController::class)->group(function () {
   Route::post('/register', 'create');
   Route::post('/login', 'login');
-  Route::post('/logout', 'logout');
 });
 Route::middleware('auth:sanctum')->group(function () {
   Route::apiResource('users', Controllers\UserController::class)->except(['show']);;
+  Route::apiResource('voices', Controllers\VoiceController::class)->except(['show']);;
 });
