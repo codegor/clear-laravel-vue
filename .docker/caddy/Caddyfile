@@ -1,0 +1,34 @@
+{
+  debug
+  local_certs
+}
+
+dev.server {
+  encode zstd gzip
+  root * /app/ui/dist
+
+  handle /api/* {
+    root * /app/public
+    try_files {path} {path}.php
+    php_fastcgi php:9000
+  }
+
+  handle /web {
+    root * /app/public
+    try_files {path} {path}.php
+    php_fastcgi php:9000
+  }
+
+  handle /assets/* {
+    file_server
+  }
+
+  handle {
+    try_files {path} /index.html
+    file_server
+  }
+
+  log {
+      output file /var/log/caddy/access.log
+  }
+}
